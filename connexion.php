@@ -20,18 +20,18 @@ if(isset($_POST['connexion']))
     // var_dump($user);
     // echo ($user);
 
-    // if($user == false)
-    // {
-    //     echo "bad logins";
-    // }
-    // else 
-    // {
-    //     $_SESSION["connecte"] = "oui";
-    //     header("Location: ")
-    // }
+                if($user == false)
+            {
+            echo "bad logins";
+            }
+                else 
+            {
+    
+                $_SESSION["connecte"] = "oui";
+                  header("Location: index.php");
+            }
+    }
 
-    header("Location: index.php");
-}
 
 ?>
 
