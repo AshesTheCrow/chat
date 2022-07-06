@@ -30,13 +30,25 @@
     </div>
   </div>
 </nav>
+
 <div class="container">
+
     <h1>Bienvenue sur le chat</h1>
 
 
            
-          <div id="chatbox"></div>
-           <div>
+          <div style="text-align:left;
+    margin:0 auto;
+    margin-bottom:25px;
+    padding:10px;
+    background:#fff;
+    height:400px;
+    width:600px;
+    border:1px solid #ACD8F0;
+    overflow:auto;"></div>
+          
+
+           <div style="width:600px; height:400px">
               <form name="message" action="">
               <input name="usermsg" type="text" id="usermsg" size="63" />
               <input name="submitmsg" type="submit"  id="submitmsg" value="Send" />
