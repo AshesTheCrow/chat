@@ -1,8 +1,8 @@
 <?php include_once "header.php"; ?>
 
 <form method="POST">
-<input type="text" placeholder="mail" name=mail/>
-<input type="text" placeholder="mot de passe" name=motdepasse/>
+<input type="text" placeholder="mail" name="mail"/>
+<input type="text" placeholder="mot de passe" name="motdepasse"/>
 <button name="connexion">Connexion</button>
 </form>
 
@@ -17,9 +17,20 @@ if(isset($_POST['connexion']))
     $requete = $chat->prepare($sql);
     $requete->execute(array($mail, $motdepasse));
     $user = $requete->fetch();
-    var_dump($user);
+    // var_dump($user);
+    // echo ($user);
 
-    
+    // if($user == false)
+    // {
+    //     echo "bad logins";
+    // }
+    // else 
+    // {
+    //     $_SESSION["connecte"] = "oui";
+    //     header("Location: ")
+    // }
+
+    header("Location: index.php");
 }
 
 ?>

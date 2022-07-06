@@ -6,4 +6,6 @@ $password= '';
 
 $chat = new PDO($dsn, $user, $password);
 
+session_start();
+
 ?>
