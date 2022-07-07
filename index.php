@@ -66,6 +66,24 @@
       </body>
       </html>
 
+      <script>
+      setInterval(function(){
+        $("#chatbox").load("messages.php");
+      }, 2000);
+
+      querySelector("#submitmsg").addEventListener("click", function(event) {
+        event.preventDefault();
+        var message = document.querySelector("#usermsg").value;
+         var xhr = new XMLHttpRequest();
+        xhr.open("POST", "ajout_message.php", true);
+         xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+         xhr.send("message=" + message);
+        
+        document.querySelector("#usermsg").value = "";
+      });
+      </script>
+
+
 
 </body>
 </html>
