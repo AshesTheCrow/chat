@@ -65,6 +65,10 @@ include_once "nav.php";
         document.querySelector("#usermsg").value = "";
       });
       </script>
+      <script>
+        let message = document.querySelector('usermsg')
+        
+      </script>
 
 
 
