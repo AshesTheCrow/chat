@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Generation Time: Jul 06, 2022 at 01:43 PM
--- Server version: 5.7.33
--- PHP Version: 7.4.19
+-- Hôte : 127.0.0.1:3306
+-- Généré le : jeu. 07 juil. 2022 à 10:32
+-- Version du serveur : 5.7.36
+-- Version de PHP : 7.4.26
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -19,39 +18,45 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `chat`
+-- Base de données : `chat`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `messages`
+-- Structure de la table `messages`
 --
 
-CREATE TABLE `messages` (
-  `id_message` int(11) NOT NULL,
+DROP TABLE IF EXISTS `messages`;
+CREATE TABLE IF NOT EXISTS `messages` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_utilisateur` int(11) NOT NULL,
   `message` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `date` date NOT NULL,
-  `time` time(6) NOT NULL
+  `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `id_utilisateur` (`id_utilisateur`),
+  KEY `time` (`time`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `utilisateurs`
+-- Structure de la table `utilisateurs`
 --
 
-CREATE TABLE `utilisateurs` (
-  `id` int(255) NOT NULL,
+DROP TABLE IF EXISTS `utilisateurs`;
+CREATE TABLE IF NOT EXISTS `utilisateurs` (
+  `id` int(255) NOT NULL AUTO_INCREMENT,
   `prenom` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
   `nom` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
   `pseudo` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
   `mail` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `motdepasse` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `motdepasse` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `utilisateurs`
+-- Déchargement des données de la table `utilisateurs`
 --
 
 INSERT INTO `utilisateurs` (`id`, `prenom`, `nom`, `pseudo`, `mail`, `motdepasse`) VALUES
@@ -61,36 +66,14 @@ INSERT INTO `utilisateurs` (`id`, `prenom`, `nom`, `pseudo`, `mail`, `motdepasse
 (4, 'theo', 'dutrou', 'dutrou', 'fuckapple@lol', '123');
 
 --
--- Indexes for dumped tables
+-- Contraintes pour les tables déchargées
 --
 
 --
--- Indexes for table `messages`
+-- Contraintes pour la table `messages`
 --
 ALTER TABLE `messages`
-  ADD PRIMARY KEY (`id_message`);
-
---
--- Indexes for table `utilisateurs`
---
-ALTER TABLE `utilisateurs`
-  ADD PRIMARY KEY (`id`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `messages`
---
-ALTER TABLE `messages`
-  MODIFY `id_message` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `utilisateurs`
---
-ALTER TABLE `utilisateurs`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  ADD CONSTRAINT `messages_ibfk_1` FOREIGN KEY (`id_utilisateur`) REFERENCES `utilisateurs` (`id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
