@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : jeu. 07 juil. 2022 à 10:32
+-- Généré le : lun. 11 juil. 2022 à 07:06
 -- Version du serveur : 5.7.36
 -- Version de PHP : 7.4.26
 
@@ -11,14 +11,17 @@ SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
 
+
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données : `chat`
+-- Base de données : `chattp`
 --
+CREATE DATABASE IF NOT EXISTS `chattp` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE `chattp`;
 
 -- --------------------------------------------------------
 
