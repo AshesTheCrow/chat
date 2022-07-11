@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : lun. 11 juil. 2022 à 07:06
+-- Généré le : lun. 11 juil. 2022 à 07:22
 -- Version du serveur : 5.7.36
 -- Version de PHP : 7.4.26
 
@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS `messages` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_utilisateur` int(11) NOT NULL,
   `message` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   KEY `id_utilisateur` (`id_utilisateur`),
   KEY `time` (`time`)
@@ -54,7 +54,11 @@ CREATE TABLE IF NOT EXISTS `utilisateurs` (
   `pseudo` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
   `mail` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `motdepasse` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  KEY `nom` (`nom`),
+  KEY `pseudo` (`pseudo`),
+  KEY `mail` (`mail`),
+  KEY `nom_prenom` (`nom`,`prenom`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
