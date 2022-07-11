@@ -67,6 +67,9 @@ include_once "nav.php";
       </script>
       <script>
         let message = document.querySelector('usermsg')
+        message.addEventListener('click'function(e){
+          e.preventDefault();
+        })
         
       </script>
 
