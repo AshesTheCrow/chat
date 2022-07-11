@@ -1,6 +1,6 @@
 <?php
 
-$dsn = 'mysql:dbname=chat;host=localhost';
+$dsn = 'mysql:dbname=chatTP;host=localhost';
 $user = 'root';
 $password= '';
 
