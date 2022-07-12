@@ -47,24 +47,21 @@
 
   <script>
 
-    document.querySelector('#submitmsg').addEventListener('click', function(e) {
-        e.preventDefault();
-        const message = document.querySelector('#usermsg').value;
+    document.querySelector('#submitmsg').addEventListener('click', () => {
+        const formData = new FormData();
+        formData.append('submitmsg', document.querySelector ('#submitmsg').value);
+
         const options = {
             method: 'POST',
-            // ?? FormData ?? 
-            body: JSON.stringify({
-                message: message
-            })
-        };
+            body: formData,
+        }
+
         fetch('ajoutMessage.php', options)
-            .then(response => response.json())
-            .then(data => {
-                console.log(data);
-                document.querySelector('#chatbox').innerHTML = data.chat;
-            });
-        
-    });
+        .then(response => response.text())
+        .then(data => {
+            console.log(data)
+        }) 
+    })
 
 
     setInterval(function(){
