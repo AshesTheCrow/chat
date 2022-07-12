@@ -20,8 +20,8 @@ SET time_zone = "+00:00";
 --
 -- Base de données : `chattp`
 --
-CREATE DATABASE IF NOT EXISTS `chattp` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
-USE `chattp`;
+-- CREATE DATABASE IF NOT EXISTS `chattp` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+-- USE `chattp`;
 
 -- --------------------------------------------------------
 
