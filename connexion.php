@@ -18,7 +18,7 @@
         <div class="row g-3 mt-5">
             <form method="POST">
                 <input type="text" placeholder="mail" name="mail"/>
-                <input type="text" placeholder="mot de passe" name="motdepasse"/>
+                <input type="password" placeholder="mot de passe" name="motdepasse"/>
                 <button name="connexion">Connexion</button>
             </form>
         </div>
@@ -46,7 +46,7 @@ if(isset($_POST['connexion']))
         $_SESSION["user"]["nom"] = $user["nom"];
         $_SESSION["user"]["prenom"] = $user["prenom"];
         $_SESSION["user"]["pseudo"] = $user["pseudo"];        
-        $_SESSION["user"]["mail"] = $user["mail"];        
+        $_SESSION["user"]["mail"] = $user["mail"];  
 
         header("Location: index.php");
         exit();
@@ -60,3 +60,4 @@ if(isset($_POST['connexion']))
 }
 
 ?>
+

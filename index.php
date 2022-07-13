@@ -12,6 +12,7 @@
     <!-- JavaScript Bundle with Popper -->
     <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <?php include_once "nav.php"; ?>
@@ -22,22 +23,14 @@
 
 
     <div class="centrale">
-
-        <div id="chatbox" class="mt-5" style="text-align:left;
-            margin:0 auto;
-            margin-bottom:25px;
-            padding:10px;
-            background:#fff;
-            height:400px;
-            width:600px;
-            border:1px solid #ACD8F0;
-            overflow-x:hidden;
-            overflow-y:scroll;">
+        <div class="user">
+            <?php echo "<p> welcome,</p>"?> 
         </div>
-            
 
+        <div id="chatbox" class="mt-5"></div>
+            
         <div  style="width:600px; margin-left:48px;">
-            <!-- <form name="message" action=""> -->
+            <!-- <form id="msg" name="message" method="POST"> -->
             <input name="usermsg" type="text" id="usermsg" size="63" />
             <input name="submitmsg" type="button"  id="submitmsg" value="Envoyer" />
             <!-- </form> -->
@@ -45,37 +38,53 @@
     </div> 
 </div>
 
-  <script>
+<script>
+    let texte = document.querySelector("#usermsg")
+    texte.addEventListener("keyup", verifEntree)
 
+    function verifEntree(e){
+    if(e.key == "Enter"){
+        postMessage()
+    }
+}
+
+
+    function postMessage(){
     document.querySelector('#submitmsg').addEventListener('click', function(e) {
         e.preventDefault();
         const message = document.querySelector('#usermsg').value;
+        console.log(message)
+        document.querySelector('#usermsg').value='';
+        // if(message.length==0) { return;}
+
+        const formData = new FormData();
+        formData.append('usermsg', message)
         const options = {
             method: 'POST',
             // ?? FormData ?? 
-            body: JSON.stringify({
-                message: message
-            })
+            // body: JSON.stringify(message)
+            // headers
+            body:formData
         };
         fetch('ajoutMessage.php', options)
-            .then(response => response.json())
+            .then(response => response.text())
             .then(data => {
                 console.log(data);
-                document.querySelector('#chatbox').innerHTML = data.chat;
+                document.querySelector('#chatbox').innerHTML = data;
             });
         
     });
-
+}
 
     setInterval(function(){
-      fetch('messages.php')
-      .then(response => response.text())
-      .then(data => {
+        fetch('messages.php')
+        .then(response => response.text())
+        .then(data => {
+            // console.log(data)
         document.querySelector('#chatbox').innerHTML = data;
-      })
+        })
     }, 1000);
 
-  </script>
-
+</script>   
 </body>
 </html>
