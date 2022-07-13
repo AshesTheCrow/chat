@@ -35,19 +35,19 @@ if(isset($_POST['connexion']))
     $motdepasse = $_POST["motdepasse"];
 
     $sql = "SELECT * FROM utilisateurs WHERE mail = ?";
-    $requete = $chat->prepare($sql);
+    $requete = $bdd->prepare($sql);
     $requete->execute(array($mail));
     $user = $requete->fetch();
 
     if(password_verify($motdepasse, $user["motdepasse"]))
     {
         $_SESSION["connecte"] = "oui";
-        $_SESSION["user"]["id"] = $user["id"];
-        $_SESSION["user"]["nom"] = $user["nom"];
-        $_SESSION["user"]["prenom"] = $user["prenom"];
-        $_SESSION["user"]["pseudo"] = $user["pseudo"];        
-        $_SESSION["user"]["mail"] = $user["mail"];  
-
+        // $_SESSION["user"]["id"] = $user["id"];
+        // $_SESSION["user"]["nom"] = $user["nom"];
+        // $_SESSION["user"]["prenom"] = $user["prenom"];
+        // $_SESSION["user"]["pseudo"] = $user["pseudo"];        
+        // $_SESSION["user"]["mail"] = $user["mail"];  
+        $_SESSION["user"] = $user;
         header("Location: index.php");
         exit();
     }

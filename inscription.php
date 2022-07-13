@@ -4,7 +4,7 @@ include_once('header.php');
 
 if(isset($_POST['inscription'])){
     $sql="INSERT INTO utilisateurs (prenom, nom, pseudo, mail, motdepasse) VALUES (:prenom, :nom, :pseudo, :mail, :motdepasse)";
-    $requete=$chat->prepare($sql);
+    $requete=$bdd->prepare($sql);
     $requete->execute(array(
         ':prenom' => $_POST['prenom'],
         ':nom' => $_POST['nom'],

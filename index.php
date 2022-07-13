@@ -1,10 +1,10 @@
 <?php include_once "header.php"; ?>
+<?php include_once "securite.php"; ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chat</title>
     <!-- CSS only -->
@@ -39,42 +39,42 @@
 </div>
 
 <script>
-    let texte = document.querySelector("#usermsg")
-    texte.addEventListener("keyup", verifEntree)
+
+    document.querySelector("#usermsg").addEventListener("keyup", verifEntree)
+    document.querySelector("#submitmsg").addEventListener("click", postMessage)
 
     function verifEntree(e){
-    if(e.key == "Enter"){
-        postMessage()
+        if(e.key == "Enter"){
+            postMessage(e)
+        }
     }
-}
 
 
-    function postMessage(){
-    document.querySelector('#submitmsg').addEventListener('click', function(e) {
+    function postMessage(e) {
         e.preventDefault();
         const message = document.querySelector('#usermsg').value;
-        console.log(message)
-        document.querySelector('#usermsg').value='';
-        // if(message.length==0) { return;}
-
+        console.log(message) 
+        document.querySelector('#usermsg').value='';   
+        
         const formData = new FormData();
         formData.append('usermsg', message)
+
         const options = {
             method: 'POST',
             // ?? FormData ?? 
             // body: JSON.stringify(message)
             // headers
-            body:formData
+            body: formData
         };
+
         fetch('ajoutMessage.php', options)
             .then(response => response.text())
             .then(data => {
                 console.log(data);
                 document.querySelector('#chatbox').innerHTML = data;
             });
-        
-    });
-}
+    }
+
 
     setInterval(function(){
         fetch('messages.php')
