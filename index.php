@@ -24,7 +24,7 @@
 
     <div class="centrale">
         <div class="user">
-            <?php echo "<p> welcome,</p>"?> 
+            <?php echo (isset($_SESSION['user'])? "<p class='text-center p-2 border border-danger '> welcome ,"." ".$_SESSION['user']['pseudo']."</p>" : " ")?> 
         </div>
 
         <div id="chatbox" class="mt-5"></div>
@@ -71,7 +71,7 @@
             .then(response => response.text())
             .then(data => {
                 console.log(data);
-                document.querySelector('#chatbox').innerHTML = data;
+                // document.querySelector('#chatbox').innerHTML = data;
             });
     }
 
@@ -80,8 +80,14 @@
         fetch('messages.php')
         .then(response => response.text())
         .then(data => {
-            // console.log(data)
+            console.log(data)
         document.querySelector('#chatbox').innerHTML = data;
+
+        const messages = document.querySelector('#chatbox');
+
+        // messages.innerHTML = html;
+        messages.scrollTop = messages.scrollHeight;
+                
         })
     }, 1000);
 

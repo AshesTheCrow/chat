@@ -9,8 +9,7 @@
 
     try {
         $requete = $bdd->prepare($sql);
-        $requete->execute(array(':id_utilisateur' => 1, ':message' => $message));
-        echo "Message envoyé";
+        $requete->execute(array(':id_utilisateur' => $_SESSION["user"]["id"], ':message' => $message));
     } catch(PDOException $e) {
         echo("Erreur: " .$e->getMessage());
     }
